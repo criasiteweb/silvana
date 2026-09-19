@@ -67,7 +67,49 @@ html:not(.js) .ap{opacity:1;transform:none}
 .rotulo::after{background:linear-gradient(90deg,var(--ouro-linha),transparent)}
 
 /* ------------------- TOPO: a foto dela vem primeiro ------------------ */
-.topo{padding:52px 0 6px;text-align:center}
+.capa{position:relative;isolation:isolate;overflow:hidden;padding-bottom:42px}
+/* 1. foto do decorado já desfocada e escurecida no arquivo */
+.capa-fundo{
+  position:absolute;inset:0;z-index:-3;
+  background:url("assets/img/fundo-topo.jpg") center 28%/cover no-repeat;
+}
+/* 2. véu: garante o contraste do texto e puxa tudo para o preto embaixo */
+.capa-fundo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,7,6,.78) 0%,rgba(7,7,6,.62) 30%,rgba(7,7,6,.88) 72%,var(--preto) 100%);
+}
+/* 3. brilho dourado que se move devagar, dá vida sem distrair */
+.capa-aurora{position:absolute;inset:-30% -20% auto -20%;height:120%;z-index:-2;pointer-events:none;opacity:.85}
+.capa-aurora::before,.capa-aurora::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(58px);
+}
+.capa-aurora::before{
+  width:78%;height:46%;left:-6%;top:2%;
+  background:radial-gradient(circle,rgba(194,160,73,.42),transparent 68%);
+  animation:vagar 17s ease-in-out infinite alternate;
+}
+.capa-aurora::after{
+  width:64%;height:40%;right:-8%;top:24%;
+  background:radial-gradient(circle,rgba(239,220,166,.26),transparent 70%);
+  animation:vagar 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes vagar{from{transform:translate3d(-7%,-4%,0) scale(1)}to{transform:translate3d(9%,6%,0) scale(1.16)}}
+/* 4. monograma SN gigante, bem apagado, como marca d'água */
+.capa-marca{
+  position:absolute;z-index:-2;left:50%;top:31%;transform:translate(-50%,-50%);
+  width:min(104vw,460px);aspect-ratio:1;opacity:.042;pointer-events:none;
+  background:url("assets/img/logo.png") center/contain no-repeat;
+}
+/* 5. cantoneiras douradas finas — o mesmo motivo dos posts dela */
+.capa-moldura{position:absolute;inset:16px 12px 12px;z-index:-1;pointer-events:none}
+.capa-moldura span{position:absolute;width:44px;height:44px;border:1px solid var(--ouro-linha)}
+.capa-moldura span:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-radius:14px 0 0 0}
+.capa-moldura span:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-radius:0 14px 0 0}
+.capa-moldura span:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 14px}
+.capa-moldura span:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 14px 0}
+@media (prefers-reduced-motion:reduce){.capa-aurora::before,.capa-aurora::after{animation:none}}
+
+.topo{padding:48px 0 6px;text-align:center;position:relative}
 .moldura{position:relative;width:170px;margin:0 auto 22px}
 .moldura::before{
   content:"";position:absolute;inset:-6px;border-radius:50%;
@@ -244,10 +286,66 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
 .fixo.on{transform:none}
 .fixo .dentro{max-width:500px;margin:0 auto}
 
+/* ------------------------- FORMULÁRIOS ------------------------------ */
+.campo select,.campo textarea{
+  width:100%;padding:15px 16px;border-radius:13px;font-size:15px;font-family:inherit;
+  background:rgba(0,0,0,.42);border:1.5px solid rgba(255,255,255,.1);color:var(--branco);
+  transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;
+}
+.campo select{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C2A049' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:17px;padding-right:44px;
+}
+.campo select option{background:#14120E;color:var(--branco)}
+.campo textarea{resize:vertical;min-height:84px;line-height:1.5}
+.campo select:focus,.campo textarea:focus{outline:0;border-color:var(--ouro);box-shadow:0 0 0 3px rgba(194,160,73,.16)}
+.campo input::placeholder,.campo textarea::placeholder{color:var(--cinza-2)}
+.campo.erro input,.campo.erro select{border-color:#C9553F}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{font-size:11.5px;color:var(--cinza-2);text-align:center;line-height:1.5;margin-top:12px}
+
+.divisor{
+  display:flex;align-items:center;gap:11px;margin:20px 0 14px;
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ouro);
+}
+.divisor::before,.divisor::after{content:"";height:1px;flex:1;background:var(--ouro-linha)}
+
+/* ---------------------------- MODAL --------------------------------- */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none;
+  align-items:flex-end;justify-content:center;
+}
+.modal.on{display:flex}
+.modal-veu{position:absolute;inset:0;background:rgba(4,4,3,.74);backdrop-filter:blur(4px);animation:ap .25s ease}
+@keyframes ap{from{opacity:0}to{opacity:1}}
+.modal-caixa{
+  position:relative;width:100%;max-width:500px;max-height:92svh;overflow-y:auto;
+  background:linear-gradient(170deg,#1D180F,#0A0908 58%);
+  border:1px solid var(--ouro-linha);border-radius:24px 24px 0 0;
+  padding:8px 20px calc(24px + env(safe-area-inset-bottom));
+  box-shadow:0 -20px 70px rgba(0,0,0,.7);animation:subir .34s cubic-bezier(.2,.7,.3,1);
+}
+@keyframes subir{from{transform:translateY(100%)}to{transform:none}}
+.modal-pega{width:44px;height:4px;border-radius:99px;background:rgba(255,255,255,.18);margin:6px auto 14px}
+.modal-fechar{
+  position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);color:var(--cinza);
+}
+.modal-fechar svg{width:16px;height:16px}
+.modal-caixa h2{font-family:var(--serif);font-size:22px;line-height:1.22;margin-bottom:6px;text-align:center}
+.modal-caixa h2 em{font-style:normal;color:var(--ouro-claro)}
+.modal-caixa > p{font-size:13.5px;color:var(--cinza);text-align:center;margin-bottom:18px}
+body.travado{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.modal-caixa{animation:none}}
+
 @media (min-width:640px){
   .col{max-width:540px}
   .video{min-height:520px}
   .btns{max-width:420px;margin:0 auto}
+  .modal{align-items:center;padding:24px}
+  .modal-caixa{border-radius:26px;padding:8px 26px 26px}
+  .modal-pega{display:none}
 }
 </style>
 </head>
@@ -256,8 +354,13 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
 <div class="brilho" aria-hidden="true"></div>
 
 <!-- ===================== TOPO: FOTO DELA PRIMEIRO ===================== -->
-<header class="topo">
-  <div class="col">
+<header class="capa">
+  <div class="capa-fundo" aria-hidden="true"></div>
+  <div class="capa-aurora" aria-hidden="true"></div>
+  <div class="capa-marca" aria-hidden="true"></div>
+  <div class="capa-moldura" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+  <div class="col topo">
     <div class="moldura ap">
       <img src="assets/img/perfil.png" alt="Silvana Novaes, corretora de imóveis" width="170" height="170" fetchpriority="high">
       <img class="selo" src="assets/img/logo.png" alt="" width="54" height="54">
@@ -361,6 +464,72 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
   </div>
 </section>
 
+<!-- ===================== INSCRIÇÃO ===================== -->
+<section class="bloco">
+  <div class="col">
+    <div class="caixa ap">
+      <h2>Quero <em>sair do aluguel</em></h2>
+      <p>Preencha que eu analiso o seu perfil e te chamo com as opções.</p>
+
+      <form id="form-cadastro" novalidate>
+        <div class="campo">
+          <label for="c-nome">Seu nome</label>
+          <input id="c-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
+        </div>
+
+        <div class="campo">
+          <label for="c-fone">Seu WhatsApp</label>
+          <input id="c-fone" name="fone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 90000-0000" required>
+        </div>
+
+        <div class="campo">
+          <label for="c-regiao">Onde você quer morar</label>
+          <select id="c-regiao" name="regiao" required>
+            <option value="">Escolha a região</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="c-renda">Renda familiar por mês</label>
+          <select id="c-renda" name="renda" required>
+            <option value="">Escolha a faixa</option>
+            <option>Até R$ 3.200</option>
+            <option>De R$ 3.200 a R$ 5.000</option>
+            <option>De R$ 5.000 a R$ 9.600</option>
+            <option>Acima de R$ 9.600</option>
+            <option>Prefiro falar com você</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="c-quando">Quando pretende comprar</label>
+          <select id="c-quando" name="quando" required>
+            <option value="">Escolha</option>
+            <option>O quanto antes</option>
+            <option>Nos próximos 3 meses</option>
+            <option>Ainda este ano</option>
+            <option>Só estou me informando</option>
+          </select>
+        </div>
+
+        <button class="btn btn-wpp" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
+          Enviar meus dados
+        </button>
+        <p class="mini">Os dados vão direto para o WhatsApp da Silvana, já organizados. Nada fica guardado neste site.</p>
+      </form>
+
+      <div class="divisor">Conhece alguém?</div>
+
+      <button class="btn btn-ouro" type="button" id="abrir-indicacao">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        Indicar uma pessoa
+      </button>
+      <p class="mini">Indique quem está no aluguel. A Silvana fala com a pessoa e te dá retorno.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CHAMADA FINAL ===================== -->
 <section class="bloco">
   <div class="col">
@@ -400,6 +569,60 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
   </div>
 </footer>
 
+<!-- ===================== MODAL DE INDICAÇÃO ===================== -->
+<div class="modal" id="modal-indicacao" role="dialog" aria-modal="true" aria-labelledby="ind-titulo">
+  <div class="modal-veu" data-fechar></div>
+  <div class="modal-caixa">
+    <div class="modal-pega" aria-hidden="true"></div>
+    <button class="modal-fechar" type="button" data-fechar aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <h2 id="ind-titulo">Indicar <em>uma pessoa</em></h2>
+    <p>Você indica, a Silvana cuida do resto e te dá retorno.</p>
+
+    <form id="form-indicacao" novalidate>
+      <div class="divisor">Seus dados</div>
+
+      <div class="campo">
+        <label for="i-nome">Seu nome</label>
+        <input id="i-nome" name="indNome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
+      </div>
+      <div class="campo">
+        <label for="i-fone">Seu WhatsApp</label>
+        <input id="i-fone" name="indFone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 90000-0000" required>
+      </div>
+
+      <div class="divisor">Quem você indica</div>
+
+      <div class="campo">
+        <label for="a-nome">Nome da pessoa</label>
+        <input id="a-nome" name="amigoNome" type="text" placeholder="Nome e sobrenome" required>
+      </div>
+      <div class="campo">
+        <label for="a-fone">WhatsApp da pessoa</label>
+        <input id="a-fone" name="amigoFone" type="tel" inputmode="numeric" placeholder="(11) 90000-0000" required>
+      </div>
+      <div class="campo">
+        <label for="a-regiao">Região de interesse</label>
+        <select id="a-regiao" name="amigoRegiao">
+          <option value="">Não sei / a combinar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="a-obs">Algo que ajude (opcional)</label>
+        <textarea id="a-obs" name="obs" placeholder="Ex.: paga R$ 1.500 de aluguel, quer 2 dormitórios, melhor horário para ligar…"></textarea>
+      </div>
+
+      <button class="btn btn-wpp" type="submit">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
+        Enviar indicação
+      </button>
+      <p class="mini">Avise a pessoa que você passou o contato dela. Nada fica guardado neste site.</p>
+    </form>
+  </div>
+</div>
+
 <div class="fixo" id="fixo">
   <div class="dentro">
     <a class="btn btn-wpp" href="#" data-wpp="Oi, Silvana! Vi o seu site e quero saber como sair do aluguel.">
@@ -430,7 +653,8 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
   /* ---------------- regiões ---------------- */
   var pino = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
   $('#regioes').innerHTML = REGIOES.map(function (r, i) {
-    var msg = 'Oi, Silvana! Quero ver opções na região: ' + r + '.';
+    var msg = 'Olá, Silvana! Vim pelo seu site e tenho interesse em comprar meu imóvel ' +
+      (r === 'São Paulo' ? 'em São Paulo' : (r === 'ABC' ? 'no ABC' : 'na ' + r)) + ', pode me ajudar?';
     return '<a class="regiao ap' + (i % 2 ? ' d1' : '') + '" target="_blank" rel="noopener" href="https://wa.me/' +
       WPP + '?text=' + encodeURIComponent(msg) + '">' + pino + '<b>' + r + '</b></a>';
   }).join('');
@@ -539,6 +763,117 @@ h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;let
 
     saida.innerHTML = txt;
     saida.classList.add('on');
+  });
+
+  /* ---------------- selects de região ---------------- */
+  ['#c-regiao', '#a-regiao'].forEach(function (sel) {
+    var el = $(sel);
+    REGIOES.forEach(function (r) {
+      var o = document.createElement('option');
+      o.textContent = r;
+      el.appendChild(o);
+    });
+  });
+
+  /* ---------------- máscara de telefone ---------------- */
+  function mascaraFone(el) {
+    el.addEventListener('input', function () {
+      var d = el.value.replace(/\D/g, '').slice(0, 11);
+      var v = d;
+      if (d.length > 2) v = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+      if (d.length > 6) {
+        var corte = d.length > 10 ? 7 : 6;
+        v = '(' + d.slice(0, 2) + ') ' + d.slice(2, corte) + '-' + d.slice(corte);
+      }
+      el.value = v;
+    });
+  }
+  document.querySelectorAll('input[type="tel"]').forEach(mascaraFone);
+
+  /* ---------------- envio dos formulários ---------------- */
+  function limpar(f) {
+    f.querySelectorAll('.campo').forEach(function (c) { c.classList.remove('erro'); });
+  }
+  function validar(f) {
+    limpar(f);
+    var falhou = null;
+    f.querySelectorAll('[required]').forEach(function (el) {
+      var vazio = !el.value.trim();
+      var foneCurto = el.type === 'tel' && el.value.replace(/\D/g, '').length < 10;
+      if (vazio || foneCurto) {
+        el.closest('.campo').classList.add('erro');
+        if (!falhou) falhou = el;
+      }
+    });
+    if (falhou) {
+      falhou.focus();
+      falhou.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      return false;
+    }
+    return true;
+  }
+  function enviar(texto) {
+    window.open('https://wa.me/' + WPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  }
+
+  $('#form-cadastro').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target;
+    if (!validar(f)) return;
+    var v = function (n) { return f.elements[n].value.trim(); };
+    enviar(
+      'Olá, Silvana! Vim pelo seu site e quero sair do aluguel.\n\n' +
+      'Nome: ' + v('nome') + '\n' +
+      'WhatsApp: ' + v('fone') + '\n' +
+      'Região: ' + v('regiao') + '\n' +
+      'Renda familiar: ' + v('renda') + '\n' +
+      'Pretendo comprar: ' + v('quando') + '\n\n' +
+      'Pode me ajudar?'
+    );
+  });
+
+  $('#form-indicacao').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target;
+    if (!validar(f)) return;
+    var v = function (n) { return f.elements[n].value.trim(); };
+    var texto =
+      'Olá, Silvana! Vim pelo seu site e quero indicar uma pessoa.\n\n' +
+      'QUEM INDICOU\n' +
+      'Nome: ' + v('indNome') + '\n' +
+      'WhatsApp: ' + v('indFone') + '\n\n' +
+      'QUEM ESTÁ SENDO INDICADO\n' +
+      'Nome: ' + v('amigoNome') + '\n' +
+      'WhatsApp: ' + v('amigoFone') + '\n' +
+      'Região: ' + (v('amigoRegiao') || 'a combinar');
+    if (v('obs')) texto += '\nObservação: ' + v('obs');
+    texto += '\n\nPode falar com ela?';
+    enviar(texto);
+  });
+
+  /* ---------------- modal de indicação ---------------- */
+  var modal = $('#modal-indicacao');
+  var voltarPara = null;
+
+  function abrirModal() {
+    voltarPara = document.activeElement;
+    modal.classList.add('on');
+    document.body.classList.add('travado');
+    var primeiro = modal.querySelector('input');
+    if (primeiro) setTimeout(function () { primeiro.focus(); }, 320);
+  }
+  function fecharModal() {
+    modal.classList.remove('on');
+    document.body.classList.remove('travado');
+    if (voltarPara) voltarPara.focus();
+  }
+
+  $('#abrir-indicacao').addEventListener('click', abrirModal);
+  modal.querySelectorAll('[data-fechar]').forEach(function (b) {
+    b.addEventListener('click', fecharModal);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('on')) fecharModal();
   });
 })();
 </script>
