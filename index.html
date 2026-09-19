@@ -4,533 +4,543 @@
 <script>document.documentElement.className+=" js";</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
 <title>Silvana Novaes | Corretora de Imóveis | SN IMOB</title>
-<meta name="description" content="Silvana Novaes, corretora de imóveis em São Paulo. Orientação sobre Minha Casa Minha Vida, financiamento imobiliário e análise de perfil para a compra do seu imóvel no ABC, Zona Leste, Zona Sul e São Paulo.">
-<meta name="author" content="Silvana Novaes">
+<meta name="description" content="Silvana Novaes, corretora de imóveis. Minha Casa Minha Vida e financiamento com entrada facilitada em toda a região de São Paulo.">
 <meta name="theme-color" content="#080807">
-<link rel="canonical" href="./index.html">
-
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="Silvana Novaes — Corretora de Imóveis">
+<meta property="og:type" content="profile">
 <meta property="og:title" content="Chegou a sua vez de sair do aluguel — Silvana Novaes">
-<meta property="og:description" content="Entrada facilitada e parcelas que cabem no bolso. Minha Casa Minha Vida e financiamento em toda a região de São Paulo.">
+<meta property="og:description" content="Entrada facilitada e parcelas que cabem no bolso. Atendo toda a região de São Paulo.">
 <meta property="og:image" content="assets/img/compartilhar.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
-<link rel="stylesheet" href="assets/css/estilo.css">
+<style>
+/* =====================================================================
+   BIOSITE — Silvana Novaes / SN IMOB
+   Coluna única, estreita, sem menu. Conteúdo aparece conforme rola.
+   Paleta lida do selo dela: dourado sobre preto.
+   ===================================================================== */
+:root{
+  --preto:#070706; --carvao:#121110; --carvao-2:#1A1713;
+  --ouro:#C2A049; --ouro-claro:#EFDCA6; --ouro-fundo:rgba(194,160,73,.10);
+  --ouro-linha:rgba(194,160,73,.28);
+  --branco:#F6F3EC; --cinza:#A7A093; --cinza-2:#6F6859;
+  --wpp:#25D366; --wpp-2:#1BA851;
+  --serif:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);background:var(--preto);color:var(--branco);
+  line-height:1.6;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  padding-bottom:calc(88px + env(safe-area-inset-bottom));
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:3px;border-radius:8px}
+::selection{background:var(--ouro);color:#120E04}
+
+/* brilho dourado fixo no fundo */
+.brilho{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 120% 46% at 50% 0%,rgba(194,160,73,.16),transparent 62%)}
+
+.col{width:100%;max-width:500px;margin:0 auto;padding:0 20px}
+.bloco{padding:40px 0}
+
+/* aparecer ao rolar */
+.ap{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.ap.vis{opacity:1;transform:none}
+.ap.d1{transition-delay:.08s}.ap.d2{transition-delay:.16s}.ap.d3{transition-delay:.24s}
+html:not(.js) .ap{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.ap{transition:none;opacity:1;transform:none}}
+
+.rotulo{
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;
+  color:var(--ouro);margin-bottom:16px;text-align:center;
+}
+.rotulo::before,.rotulo::after{content:"";height:1px;flex:1;max-width:46px;background:linear-gradient(90deg,transparent,var(--ouro-linha))}
+.rotulo::after{background:linear-gradient(90deg,var(--ouro-linha),transparent)}
+
+/* ------------------- TOPO: a foto dela vem primeiro ------------------ */
+.topo{padding:52px 0 6px;text-align:center}
+.moldura{position:relative;width:170px;margin:0 auto 22px}
+.moldura::before{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  background:conic-gradient(from 210deg,var(--ouro-claro),var(--ouro),#5F4912,var(--ouro),var(--ouro-claro));
+  animation:girar 16s linear infinite;
+}
+@keyframes girar{to{transform:rotate(360deg)}}
+.moldura::after{content:"";position:absolute;inset:-2px;border-radius:50%;background:var(--preto)}
+.moldura img{
+  position:relative;z-index:2;width:170px;height:170px;border-radius:50%;
+  object-fit:cover;box-shadow:0 18px 46px rgba(0,0,0,.72);
+}
+.moldura .selo{
+  position:absolute;z-index:3;right:-2px;bottom:0;width:54px;height:54px;border-radius:50%;
+  background:var(--preto);border:2px solid var(--ouro);padding:3px;box-shadow:0 8px 20px rgba(0,0,0,.75);
+}
+@media (prefers-reduced-motion:reduce){.moldura::before{animation:none}}
+
+h1{font-family:var(--serif);font-size:clamp(31px,8.8vw,42px);font-weight:700;letter-spacing:-.015em;line-height:1.08;margin-bottom:8px}
+.cargo{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--ouro);margin-bottom:13px}
+.creci{font-size:12.5px;color:var(--cinza);margin-bottom:18px}
+.falta{
+  display:inline-block;color:var(--ouro-claro);background:var(--ouro-fundo);
+  border:1px dashed var(--ouro-linha);border-radius:6px;padding:1px 8px;font-weight:700;font-size:.94em;
+}
+.chamada{font-family:var(--serif);font-size:20.5px;line-height:1.35;color:#FFFDF7;max-width:22ch;margin:0 auto 10px}
+.chamada em{font-style:normal;color:var(--ouro-claro)}
+.apoio{font-size:14.5px;color:var(--cinza);max-width:34ch;margin:0 auto 26px}
+
+/* ------------------------------ BOTÕES ------------------------------ */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  padding:17px 20px;border-radius:15px;font-size:15.5px;font-weight:700;
+  border:1.5px solid transparent;transition:transform .16s,background .22s,border-color .22s,box-shadow .22s;
+}
+.btn:active{transform:scale(.977)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-wpp{background:var(--wpp);color:#04220E;box-shadow:0 10px 30px rgba(37,211,102,.24)}
+.btn-wpp:hover{background:var(--wpp-2)}
+.btn-ouro{background:linear-gradient(135deg,var(--ouro-claro),var(--ouro) 58%,#93741F);color:#1C1503;box-shadow:0 10px 28px rgba(194,160,73,.24)}
+.btn-linha{border-color:var(--ouro-linha);color:var(--ouro-claro);background:rgba(194,160,73,.05)}
+.btn-linha:hover{background:rgba(194,160,73,.14);border-color:var(--ouro)}
+.btns{display:flex;flex-direction:column;gap:11px}
+
+/* --------------------------- VÍDEO DECORADO -------------------------- */
+.video{
+  position:relative;border-radius:24px;overflow:hidden;isolation:isolate;
+  border:1px solid var(--ouro-linha);box-shadow:0 26px 60px rgba(0,0,0,.6);
+  min-height:430px;display:flex;align-items:flex-end;
+}
+.video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.video::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(7,7,6,.30) 0%,rgba(7,7,6,.14) 34%,rgba(7,7,6,.82) 76%,rgba(7,7,6,.96) 100%);
+}
+.video-texto{padding:24px 22px 26px;width:100%}
+.video-texto .eti{
+  display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+  color:var(--ouro-claro);background:rgba(7,7,6,.55);border:1px solid var(--ouro-linha);
+  border-radius:999px;padding:5px 11px;margin-bottom:12px;backdrop-filter:blur(6px);
+}
+.video-texto h2{font-family:var(--serif);font-size:25px;line-height:1.2;margin-bottom:8px;color:#FFFDF7;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.video-texto p{font-size:14.5px;color:#DBD5C8;text-shadow:0 1px 12px rgba(0,0,0,.8)}
+.video-som{
+  position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(7,7,6,.6);border:1px solid var(--ouro-linha);
+  color:var(--ouro-claro);backdrop-filter:blur(8px);
+}
+.video-som svg{width:17px;height:17px}
+
+/* ------------------------------ REGIÕES ----------------------------- */
+.regioes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.regiao{
+  display:flex;align-items:center;gap:10px;padding:15px 14px;border-radius:15px;text-align:left;
+  background:linear-gradient(150deg,var(--carvao-2),var(--carvao));
+  border:1px solid rgba(255,255,255,.07);transition:border-color .2s,transform .18s;
+}
+.regiao:hover{border-color:var(--ouro-linha);transform:translateY(-2px)}
+.regiao svg{width:17px;height:17px;color:var(--ouro);flex:none}
+.regiao b{font-size:14px;font-weight:700}
+
+/* ---------------------- CLIENTES: trilha rolante --------------------- */
+.trilha{
+  position:relative;margin:0 -20px;padding:4px 0 2px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.fita{display:flex;gap:12px;width:max-content;animation:correr 42s linear infinite}
+.trilha:hover .fita,.trilha:focus-within .fita{animation-play-state:paused}
+@keyframes correr{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .fita{animation:none}
+  .trilha{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+.cliente{
+  position:relative;flex:none;width:158px;aspect-ratio:3/4;border-radius:18px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 34px rgba(0,0,0,.5);
+}
+.cliente img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cliente::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 46%,rgba(7,7,6,.78) 100%);
+}
+.cliente span{
+  position:absolute;left:11px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;
+  font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--ouro-claro);
+}
+.cliente span svg{width:13px;height:13px}
+.cliente:hover img{transform:scale(1.06)}
+
+/* --------------------------- O QUE EU FAÇO --------------------------- */
+.cards{display:grid;gap:11px}
+.card{
+  display:flex;gap:13px;padding:17px 16px;border-radius:17px;
+  background:linear-gradient(150deg,var(--carvao-2),var(--carvao));
+  border:1px solid rgba(255,255,255,.07);
+}
+.card .ico{
+  width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;
+  background:var(--ouro-fundo);border:1px solid var(--ouro-linha);color:var(--ouro-claro);
+}
+.card .ico svg{width:19px;height:19px}
+.card h3{font-size:15px;font-weight:700;margin-bottom:3px}
+.card p{font-size:13.5px;color:var(--cinza);line-height:1.5}
+
+/* ----------------------- SIMULADOR DE FAIXA ------------------------- */
+.caixa{
+  padding:22px 18px;border-radius:20px;
+  background:linear-gradient(160deg,#1F1910,#0C0B09 68%);
+  border:1px solid var(--ouro-linha);box-shadow:0 22px 56px rgba(0,0,0,.5);
+}
+.caixa h2{font-family:var(--serif);font-size:22px;line-height:1.22;margin-bottom:6px;text-align:center}
+.caixa h2 em{font-style:normal;color:var(--ouro-claro)}
+.caixa > p{font-size:13.5px;color:var(--cinza);text-align:center;margin-bottom:18px}
+.campo{position:relative;margin-bottom:13px}
+.campo label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ouro);margin-bottom:7px}
+.campo input{
+  width:100%;padding:15px 16px;border-radius:13px;font-size:17px;font-weight:700;
+  background:rgba(0,0,0,.42);border:1.5px solid rgba(255,255,255,.1);color:var(--branco);
+  transition:border-color .2s,box-shadow .2s;
+}
+.campo input:focus{outline:0;border-color:var(--ouro);box-shadow:0 0 0 3px rgba(194,160,73,.16)}
+.saida{
+  margin-top:4px;padding:15px 16px;border-radius:13px;font-size:14px;line-height:1.5;
+  background:var(--ouro-fundo);border:1px solid var(--ouro-linha);color:var(--ouro-claro);
+  display:none;
+}
+.saida.on{display:block;animation:surgir .35s ease}
+@keyframes surgir{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.saida b{color:#FFF6DC}
+.nota{font-size:11.5px;color:var(--cinza-2);line-height:1.5;margin-top:12px;text-align:center}
+
+/* ------------------------------ RODAPÉ ------------------------------ */
+.redes{display:flex;justify-content:center;gap:12px;margin-top:4px}
+.rede{
+  width:50px;height:50px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--ouro-linha);background:rgba(194,160,73,.05);color:var(--ouro-claro);
+  transition:background .2s,transform .18s;
+}
+.rede:hover{background:rgba(194,160,73,.16);transform:translateY(-2px)}
+.rede svg{width:21px;height:21px}
+.rodape{padding:34px 0 12px;text-align:center;border-top:1px solid rgba(255,255,255,.06);margin-top:14px}
+.rodape img{width:52px;height:52px;margin:0 auto 12px;border-radius:50%}
+.rodape p{font-size:12.5px;color:var(--cinza-2);line-height:1.7}
+.rodape a{color:var(--ouro)}
+
+/* ------------------------ BOTÃO FIXO DE WPP ------------------------- */
+.fixo{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:12px 20px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(7,7,6,0),rgba(7,7,6,.92) 38%);
+  transform:translateY(130%);transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.fixo.on{transform:none}
+.fixo .dentro{max-width:500px;margin:0 auto}
+
+@media (min-width:640px){
+  .col{max-width:540px}
+  .video{min-height:520px}
+  .btns{max-width:420px;margin:0 auto}
+}
+</style>
 </head>
 <body>
 
-<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="brilho" aria-hidden="true"></div>
 
-<!-- ===================== CABEÇALHO ===================== -->
-<header class="cabecalho">
-  <div class="container">
-    <a class="marca" href="#inicio" aria-label="Silvana Novaes — início">
-      <img src="assets/img/logo.png" alt="Logo SN IMOB" width="40" height="40">
-      <span>
-        <span class="marca-nome">Silvana Novaes</span>
-        <span class="marca-sub">Corretora de Imóveis</span>
-      </span>
-    </a>
+<!-- ===================== TOPO: FOTO DELA PRIMEIRO ===================== -->
+<header class="topo">
+  <div class="col">
+    <div class="moldura ap">
+      <img src="assets/img/perfil.png" alt="Silvana Novaes, corretora de imóveis" width="170" height="170" fetchpriority="high">
+      <img class="selo" src="assets/img/logo.png" alt="" width="54" height="54">
+    </div>
 
-    <nav class="nav-desktop" aria-label="Navegação principal">
-      <ul>
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#mcmv">Minha Casa Minha Vida</a></li>
-        <li><a href="#empreendimentos">Empreendimentos</a></li>
-        <li><a href="#imoveis">Encontre seu imóvel</a></li>
-        <li><a href="#financiamento">Financiamento</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+    <h1 class="ap d1">Silvana Novaes</h1>
+    <p class="cargo ap d1">Corretora de Imóveis · SN IMOB</p>
+    <p class="creci ap d1">CRECI <span class="falta">[INSERIR CRECI]</span> · São Paulo e região</p>
 
-    <a class="btn btn--ouro btn--peq cabecalho-acao" href="#analisar">Analisar meu perfil</a>
+    <p class="chamada ap d2">Chegou a sua vez <em>de sair do aluguel.</em></p>
+    <p class="apoio ap d2">Entrada facilitada e parcelas que cabem no bolso. Eu te explico o que dá para fazer hoje.</p>
 
-    <button class="hamburger" id="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="btns ap d3">
+      <a class="btn btn-wpp" href="#" data-wpp="Oi, Silvana! Vi o seu site e quero saber como sair do aluguel.">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
+        Falar comigo no WhatsApp
+      </a>
+      <a class="btn btn-linha" href="https://www.instagram.com/silvananovaescorretora/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        @silvananovaescorretora
+      </a>
+    </div>
   </div>
 </header>
 
-<!-- ===================== MENU MOBILE ===================== -->
-<nav class="menu-mobile" id="menu-mobile" aria-label="Menu">
-  <ul>
-    <li><a href="#inicio">Início <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#sobre">Sobre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#mcmv">Minha Casa Minha Vida <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#empreendimentos">Empreendimentos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#imoveis">Encontre seu imóvel <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#financiamento">Financiamento <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#faq">FAQ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-    <li><a href="#contato">Contato <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-  </ul>
-
-  <div class="btn-grupo">
-    <a class="btn btn--ouro btn--bloco" href="#analisar">Analisar meu perfil</a>
-    <button class="btn btn--wpp btn--bloco" data-wpp="geral">Falar com a Silvana</button>
-  </div>
-
-  <div class="menu-redes">
-    <a href="#" data-link="instagram" target="_blank" rel="noopener" aria-label="Instagram da Silvana">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
-    </a>
-    <a href="#" data-link="facebook" target="_blank" rel="noopener" aria-label="Facebook da Silvana">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
-    </a>
-  </div>
-</nav>
-
-<main id="conteudo">
-
-<!-- ===================== TOPO (vídeo de fundo) ===================== -->
-<section class="cine" id="inicio">
-  <div class="cine-midia">
-    <video id="cine-video" poster="assets/img/hero-poster.jpg"
-           autoplay muted loop playsinline preload="metadata"
-           aria-hidden="true" tabindex="-1">
-      <source src="assets/video/hero.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="cine-veu" aria-hidden="true"></div>
-
-  <div class="cine-conteudo">
-    <div class="cine-texto">
-      <span class="cine-selo">
-        <img src="assets/img/logo.png" alt="" width="30" height="30" fetchpriority="high">
-        <span>SN IMOB · São Paulo e região</span>
-      </span>
-
-      <h1>Chegou a sua vez <em>de sair do aluguel.</em></h1>
-
-      <p class="cine-linha">
-        Se você consegue pagar aluguel, você consegue pagar o financiamento.
-        <b>Entrada facilitada e parcelas que cabem no bolso</b> — eu analiso o seu
-        perfil e te mostro o que dá para fazer hoje.
-      </p>
-
-      <div class="cine-acoes">
-        <button class="btn btn--wpp" data-wpp="geral"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>Falar com a Silvana</button>
-        <a class="btn btn--linha" href="#analisar">Analisar meu perfil</a>
-      </div>
-
-      <p class="cine-chave">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="16.5" r="4"/><path d="m10.4 13.6 8.1-8.1M16.5 7.4l2.1 2.1M14.4 9.5l2.1 2.1"/></svg>
-        +1 sonho realizado
-      </p>
-    </div>
-  </div>
-
-  <svg class="cine-desce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-</section>
-
-<!-- ===================== FAIXA DE REGIÕES ===================== -->
-<div class="faixa-regioes">
-  <div class="container">
-    <b>Regiões onde atuo:</b>
-    <ul id="lista-regioes"></ul>
-  </div>
-</div>
-
-<!-- ===================== SOBRE ===================== -->
-<section class="secao secao--branca sobre" id="sobre">
-  <div class="container">
-    <div class="sobre-grid">
-      <div class="sobre-foto rv">
-        <img src="assets/img/silvana-rosto.jpg" alt="Silvana Novaes" width="560" height="560" loading="lazy">
-      </div>
-      <div class="rv">
-        <p class="sobretitulo">Sobre mim</p>
-        <h2>Prazer, eu sou a <span class="dourado">Silvana</span>.</h2>
-        <p>Sou corretora de imóveis e trabalho com atendimento personalizado para quem quer sair do aluguel e conquistar o próprio imóvel.</p>
-        <p>O meu trabalho começa antes do imóvel: entender o seu momento, a sua renda e o que é possível hoje. A partir daí eu te oriento sobre o Minha Casa Minha Vida, sobre o financiamento imobiliário e sobre os caminhos que existem para o seu caso.</p>
-        <p>Depois disso a gente busca o imóvel adequado ao seu perfil — na região que faz sentido para a sua vida, com o que é importante para você.</p>
-
-        <ul class="lista-check">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Orientação sobre o Minha Casa Minha Vida</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Acompanhamento no processo de financiamento</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Análise de perfil antes de escolher o imóvel</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Busca do imóvel adequado ao seu perfil</li>
-        </ul>
-
-        <div class="btn-grupo" style="margin-top:26px">
-          <a class="btn btn--ouro" href="#analisar">Analisar meu perfil</a>
-          <button class="btn btn--linha" data-wpp="geral">Falar comigo</button>
-        </div>
+<!-- ===================== VÍDEO DO DECORADO ===================== -->
+<section class="bloco">
+  <div class="col">
+    <div class="video ap">
+      <video id="vid" poster="assets/img/decorado-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <button class="video-som" id="som" type="button" aria-label="Ativar som do vídeo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/></svg>
+      </button>
+      <div class="video-texto">
+        <span class="eti">Apartamento decorado</span>
+        <h2>É assim que vai ser a sua casa.</h2>
+        <p>Entre e conheça por dentro. Depois me chama que eu te mostro os que cabem no seu bolso.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== MINHA CASA MINHA VIDA ===================== -->
-<section class="secao secao--veu" id="mcmv">
-  <div class="container">
-    <div class="cabecalho-secao rv">
-      <p class="sobretitulo">Programa habitacional</p>
-      <h2>Minha Casa <span class="dourado">Minha Vida</span></h2>
-      <p class="texto">O programa atende famílias por faixas de renda definidas pelo Ministério das Cidades. Abaixo estão as faixas urbanas vigentes, transcritas da portaria oficial.</p>
-    </div>
+<!-- ===================== SIMULADOR ===================== -->
+<section class="bloco">
+  <div class="col">
+    <div class="caixa ap">
+      <h2>Quanto você paga <em>de aluguel?</em></h2>
+      <p>Coloque o valor e veja a conta que eu faço com todo mundo.</p>
 
-    <div class="faixas" id="lista-faixas"></div>
-    <p class="texto" id="mcmv-teto" style="margin-bottom:18px"></p>
-    <div class="nota-fonte rv" id="mcmv-fonte"></div>
+      <div class="campo">
+        <label for="aluguel">Valor do aluguel por mês</label>
+        <input id="aluguel" type="text" inputmode="numeric" autocomplete="off" placeholder="R$ 0,00">
+      </div>
 
-    <div class="cabecalho-secao rv" style="margin-top:44px">
-      <h3 style="font-size:23px;margin-bottom:8px">O que define se você se enquadra</h3>
-      <p class="texto">A possibilidade de enquadramento não depende de um fator só. Estes são os pontos que entram na conta:</p>
-    </div>
-    <ul class="fatores rv" id="lista-fatores"></ul>
+      <div class="saida" id="saida" role="status" aria-live="polite"></div>
 
-    <div class="aviso js-aviso-mcmv rv" style="margin-top:24px"></div>
-
-    <div class="btn-grupo rv" style="margin-top:26px">
-      <a class="btn btn--ouro" href="#analisar">Analisar meu perfil</a>
-      <a class="btn btn--linha" href="#pagar">Quanto posso pagar?</a>
+      <p class="nota">Conta aproximada, só para dar uma ideia. O valor real depende da análise de crédito, da renda e das regras vigentes na data da contratação.</p>
     </div>
   </div>
 </section>
 
-<!-- ===================== FERRAMENTA 1 — ANALISAR MEU PERFIL ===================== -->
-<section class="secao secao--branca" id="analisar">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Ferramenta</p>
-      <h2>Descubra quais opções podem fazer <span class="dourado">sentido para o seu perfil</span></h2>
-      <p class="texto">São 10 perguntas rápidas. No final você confere o resumo e envia tudo organizado para mim pelo WhatsApp.</p>
-    </div>
-    <div class="ferramenta rv" id="ferramenta-perfil"></div>
+<!-- ===================== CLIENTES ===================== -->
+<section class="bloco">
+  <div class="col">
+    <p class="rotulo ap">+1 sonho realizado</p>
+    <p class="apoio ap" style="margin-bottom:22px">Gente que estava no aluguel e hoje tem a chave na mão.</p>
   </div>
-</section>
-
-<!-- ===================== FERRAMENTA 2 — QUANTO POSSO PAGAR ===================== -->
-<section class="secao secao--creme" id="pagar">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Ferramenta</p>
-      <h2>Quanto posso pagar <span class="dourado">no meu imóvel?</span></h2>
-      <p class="texto">Me conte a sua situação. Eu te mostro em qual faixa do programa a sua renda se enquadra, conforme a portaria oficial, e analiso o resto com você.</p>
-    </div>
-    <div class="ferramenta rv" id="ferramenta-pagar"></div>
-  </div>
-</section>
-
-<!-- ===================== SUBSÍDIO ===================== -->
-<section class="secao secao--branca" id="subsidio">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Vale verificar</p>
-      <h2>Você pode ter direito a <span class="dourado">subsídio?</span></h2>
-      <p class="texto">
-        O subsídio é um valor de apoio previsto no programa habitacional. Se existe direito e qual seria o valor
-        depende do seu perfil, da renda familiar, da localização do imóvel e das condições vigentes na data da
-        contratação. Não é um valor fixo e não dá para prometer antes da análise.
-      </p>
-      <p class="texto" style="margin-top:12px">
-        O caminho é o mesmo de sempre: entender o seu perfil primeiro. A partir daí eu verifico o que se aplica ao seu caso.
-      </p>
-    </div>
-    <div class="btn-grupo rv" style="max-width:420px;margin:0 auto">
-      <a class="btn btn--ouro btn--bloco" href="#analisar">Quero analisar meu perfil</a>
-    </div>
-    <div class="aviso js-aviso-mcmv rv" style="margin-top:26px;max-width:720px;margin-left:auto;margin-right:auto"></div>
-  </div>
-</section>
-
-<!-- ===================== FINANCIAMENTO ===================== -->
-<section class="secao secao--veu" id="financiamento">
-  <div class="container">
-    <div class="cabecalho-secao rv">
-      <p class="sobretitulo">Passo a passo</p>
-      <h2>Como funciona o <span class="dourado">financiamento</span></h2>
-      <p class="texto">Cada etapa tem o seu tempo. Eu te acompanho em todas elas — e explico o que está acontecendo em cada uma.</p>
-    </div>
-
-    <div class="processo" id="lista-processo"></div>
-
-    <div class="nota-fonte rv" style="margin-top:26px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01" stroke-linecap="round"/></svg>
-      <p>A análise de crédito e a decisão sobre o financiamento são da instituição financeira — a CAIXA e outros bancos operam essas linhas. Eu não trabalho para nenhuma instituição financeira e não posso garantir aprovação. O meu papel é te orientar e preparar para essa etapa.</p>
-    </div>
-
-    <div class="btn-grupo rv" style="margin-top:24px">
-      <button class="btn btn--ouro" data-wpp="financiamento">Tirar dúvidas sobre financiamento</button>
-      <a class="btn btn--linha" href="#pagar">Quanto posso pagar?</a>
+  <div class="col">
+    <div class="trilha ap">
+      <div class="fita" id="fita"></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== EMPREENDIMENTOS EM DESTAQUE ===================== -->
-<section class="secao secao--branca" id="empreendimentos">
-  <div class="container">
-    <div class="cabecalho-secao rv">
-      <p class="sobretitulo">Oportunidades em destaque</p>
-      <h2>Empreendimentos <span class="dourado">em destaque</span></h2>
-      <p class="texto">Uma seleção do que está cadastrado agora. Toque em "Ver detalhes" para abrir o book completo do empreendimento.</p>
+<!-- ===================== O QUE EU FAÇO ===================== -->
+<section class="bloco">
+  <div class="col">
+    <p class="rotulo ap">Como eu te ajudo</p>
+    <div class="cards">
+      <div class="card ap">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+        <div><h3>Minha Casa Minha Vida</h3><p>Eu vejo em qual faixa você entra e o que o programa cobre no seu caso.</p></div>
+      </div>
+      <div class="card ap d1">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+        <div><h3>Financiamento e entrada</h3><p>Acompanho a análise de crédito do começo ao fim e explico cada etapa.</p></div>
+      </div>
+      <div class="card ap d2">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <div><h3>Busco o imóvel certo</h3><p>Na região que faz sentido para a sua vida, dentro do que você pode pagar.</p></div>
+      </div>
     </div>
-
-    <div class="grade-imoveis" id="grade-destaques"></div>
-
-    <div class="btn-grupo rv" style="margin-top:26px">
-      <a class="btn btn--ouro" href="#imoveis">Ver todos e filtrar</a>
-      <a class="btn btn--linha" href="#quiz">Qual imóvel combina comigo?</a>
-    </div>
-
-    <div class="cabecalho-secao cabecalho-secao--centro rv" style="margin-top:56px">
-      <h3 style="font-size:22px;margin-bottom:8px">Construtoras do segmento</h3>
-      <p class="texto-peq">Empreendimentos destas construtoras fazem parte do mercado em que eu atuo. A disponibilidade de cada um deve ser confirmada comigo.</p>
-    </div>
-    <div class="construtoras rv" id="lista-construtoras"></div>
-  </div>
-</section>
-
-<!-- ===================== FERRAMENTA 4 — QUIZ ===================== -->
-<section class="secao secao--creme" id="quiz">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Ferramenta</p>
-      <h2>Qual imóvel <span class="dourado">combina comigo?</span></h2>
-      <p class="texto">Responda e eu mostro, entre os empreendimentos cadastrados, quais atendem de verdade aos seus critérios.</p>
-    </div>
-    <div class="ferramenta rv" id="ferramenta-quiz"></div>
-  </div>
-</section>
-
-<!-- ===================== ENCONTRE SEU IMÓVEL ===================== -->
-<section class="secao secao--branca" id="imoveis">
-  <div class="container">
-    <div class="cabecalho-secao rv">
-      <p class="sobretitulo">Busca</p>
-      <h2>Encontre seu <span class="dourado">próximo imóvel</span></h2>
-      <p class="texto">Filtre por região, dormitórios, vaga e lazer. Os filtros mudam os resultados de verdade.</p>
-    </div>
-
-    <div class="filtros rv" id="filtros"></div>
-    <div id="grade-imoveis" class="grade-imoveis"></div>
-    <div id="ver-mais" style="margin-top:22px;max-width:420px;margin-left:auto;margin-right:auto"></div>
   </div>
 </section>
 
 <!-- ===================== REGIÕES ===================== -->
-<section class="secao secao--veu" id="regioes">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Onde eu atuo</p>
-      <h2>Regiões onde <span class="dourado">atendo</span></h2>
-      <p class="texto">Atendimento presencial e online nestas regiões.</p>
-    </div>
-    <div class="grade grade--2 grade--3" id="grade-regioes"></div>
+<section class="bloco">
+  <div class="col">
+    <p class="rotulo ap">Onde eu atendo</p>
+    <div class="regioes" id="regioes"></div>
   </div>
 </section>
 
-<!-- ===================== TRABALHO / INSTAGRAM ===================== -->
-<section class="secao secao--branca" id="trabalho">
-  <div class="container">
-    <div class="cabecalho-secao cabecalho-secao--centro rv">
-      <p class="sobretitulo">Bastidores</p>
-      <h2>Conheça mais do <span class="dourado">meu trabalho</span></h2>
-      <p class="texto">Momentos de entrega de chave publicados no meu Instagram. Toque para ampliar.</p>
-    </div>
-  </div>
-
-  <div class="trilha" id="trilha-trabalho">
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="0" tabindex="0" role="button" aria-label="Ampliar foto 1"><img src="assets/img/trabalho-1.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="1" tabindex="0" role="button" aria-label="Ampliar foto 2"><img src="assets/img/trabalho-2.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="2" tabindex="0" role="button" aria-label="Ampliar foto 3"><img src="assets/img/trabalho-3.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="3" tabindex="0" role="button" aria-label="Ampliar foto 4"><img src="assets/img/trabalho-4.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="4" tabindex="0" role="button" aria-label="Ampliar foto 5"><img src="assets/img/trabalho-5.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="5" tabindex="0" role="button" aria-label="Ampliar foto 6"><img src="assets/img/trabalho-6.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="6" tabindex="0" role="button" aria-label="Ampliar foto 7"><img src="assets/img/trabalho-7.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-    <figure class="trilha-item" data-galeria="trabalho" data-indice="7" tabindex="0" role="button" aria-label="Ampliar foto 8"><img src="assets/img/trabalho-8.jpg" alt="Entrega de chaves — cliente da Silvana Novaes" loading="lazy" width="640" height="853"></figure>
-  </div>
-
-  <div class="container">
-    <p class="dica-arrasta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> arraste para o lado</p>
-
-    <div class="btn-grupo rv" style="max-width:480px;margin:26px auto 0">
-      <a class="btn btn--linha btn--bloco" href="#" data-link="instagram" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
-        <span data-campo="instagram">@silvananovaescorretora</span>
-      </a>
-      <a class="btn btn--linha btn--bloco" href="#" data-link="facebook" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
-        Facebook
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FAQ ===================== -->
-<section class="secao secao--veu" id="faq">
-  <div class="container">
-    <div class="cabecalho-secao rv">
-      <p class="sobretitulo">Dúvidas frequentes</p>
-      <h2>Perguntas que eu <span class="dourado">mais escuto</span></h2>
-      <p class="texto">Respostas diretas, sem promessa de aprovação.</p>
-    </div>
-    <div class="accordion rv" id="lista-faq"></div>
-  </div>
-</section>
-
-<!-- ===================== CONTATO ===================== -->
-<section class="secao secao--creme" id="contato">
-  <div class="container">
-    <div class="contato-caixa rv">
-      <h2>Vamos encontrar uma opção <span class="dourado">para o seu perfil?</span></h2>
-      <p>Me conte o seu momento. A primeira conversa é só para entender a sua situação e te mostrar o que é possível hoje.</p>
-
-      <div class="btn-grupo">
-        <a class="btn btn--ouro" href="#analisar">Analisar meu perfil</a>
-        <a class="btn btn--linha" href="#empreendimentos" style="background:transparent;color:#F3F0EA;border-color:rgba(255,255,255,.3)">Ver empreendimentos</a>
-      </div>
-
-      <div class="contato-canais">
-        <button class="canal" data-wpp="contato">
+<!-- ===================== CHAMADA FINAL ===================== -->
+<section class="bloco">
+  <div class="col">
+    <div class="caixa ap" style="text-align:center">
+      <h2>Vamos conversar <em>sem compromisso?</em></h2>
+      <p>A primeira conversa é só para eu entender o seu momento.</p>
+      <div class="btns">
+        <a class="btn btn-wpp" href="#" data-wpp="Oi, Silvana! Quero conversar sobre sair do aluguel.">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
-          <span><b data-campo="whatsappVisivel">(11) 98569-5991</b><span>WhatsApp · toque para conversar</span></span>
-        </button>
-
-        <a class="canal" href="#" data-link="instagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
-          <span><b data-campo="instagram">@silvananovaescorretora</b><span>Instagram</span></span>
+          Chamar no WhatsApp
         </a>
-
-        <a class="canal" href="#" data-link="facebook" target="_blank" rel="noopener">
+      </div>
+      <div class="redes" style="margin-top:16px">
+        <a class="rede" href="https://www.instagram.com/silvananovaescorretora/" target="_blank" rel="noopener" aria-label="Instagram da Silvana">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="rede" href="https://www.facebook.com/share/1Dpp9tgstc/" target="_blank" rel="noopener" aria-label="Facebook da Silvana">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
-          <span><b>Facebook</b><span>Silvana Novaes</span></span>
         </a>
       </div>
     </div>
   </div>
 </section>
 
-</main>
-
-<!-- ===================== RODAPÉ ===================== -->
 <footer class="rodape">
-  <div class="container">
-    <div class="rodape-topo">
-      <div class="rodape-sobre">
-        <div class="marca">
-          <img src="assets/img/logo.png" alt="Logo SN IMOB" width="50" height="50" loading="lazy">
-          <span>
-            <span class="marca-nome">Silvana Novaes</span>
-            <span class="marca-sub">Corretora de Imóveis</span>
-          </span>
-        </div>
-        <p>Atendimento personalizado para a compra do seu imóvel: Minha Casa Minha Vida, financiamento imobiliário e análise de perfil.</p>
-        <p style="margin-top:10px">CRECI <span class="pendente" data-campo="creci">[INSERIR CRECI]</span></p>
-
-        <div class="rodape-redes">
-          <a href="#" data-link="instagram" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="#" data-link="facebook" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div>
-        <h4>Navegação</h4>
-        <nav class="rodape-links" aria-label="Rodapé">
-          <a href="#sobre">Sobre</a>
-          <a href="#mcmv">Minha Casa Minha Vida</a>
-          <a href="#financiamento">Financiamento</a>
-          <a href="#empreendimentos">Empreendimentos</a>
-          <a href="#imoveis">Encontre seu imóvel</a>
-          <a href="#faq">Perguntas frequentes</a>
-        </nav>
-      </div>
-
-      <div>
-        <h4>Ferramentas</h4>
-        <nav class="rodape-links" aria-label="Ferramentas">
-          <a href="#analisar">Analisar meu perfil</a>
-          <a href="#pagar">Quanto posso pagar?</a>
-          <a href="#subsidio">Direito a subsídio?</a>
-          <a href="#quiz">Qual imóvel combina comigo?</a>
-          <a href="#contato">Falar com a Silvana</a>
-        </nav>
-      </div>
-    </div>
-
-    <p class="rodape-fim">
-      © <span id="ano">2026</span> Silvana Novaes · SN IMOB — Todos os direitos reservados.<br>
-      Este site tem caráter informativo e não representa aprovação de financiamento. Condições sujeitas a análise de crédito e às regras vigentes na data da contratação.<br>
-      Conteúdo revisado em <span data-campo="conteudoAtualizadoEm">18/09/2026</span>. Site criado por <strong>Criasiteweb</strong>.
+  <div class="col">
+    <img src="assets/img/logo.png" alt="SN IMOB" width="52" height="52">
+    <p>
+      <b>Silvana Novaes</b> · Corretora de Imóveis<br>
+      CRECI <span class="falta">[INSERIR CRECI]</span><br>
+      Atendimento em toda a região de São Paulo
+    </p>
+    <p style="margin-top:14px">
+      Conteúdo informativo. Não representa aprovação de financiamento.<br>
+      Site criado por <a href="https://criasiteweb.github.io" target="_blank" rel="noopener">Criasiteweb</a>
     </p>
   </div>
 </footer>
 
-<!-- ===================== BOOK DO EMPREENDIMENTO ===================== -->
-<div class="modal" id="modal-book" role="dialog" aria-modal="true" aria-labelledby="titulo-book">
-  <div class="modal-fundo"></div>
-  <div class="modal-caixa">
-    <button class="modal-fechar" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-    <div class="modal-conteudo" id="modal-conteudo"></div>
+<div class="fixo" id="fixo">
+  <div class="dentro">
+    <a class="btn btn-wpp" href="#" data-wpp="Oi, Silvana! Vi o seu site e quero saber como sair do aluguel.">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
+      Falar com a Silvana
+    </a>
   </div>
 </div>
 
-<!-- ===================== LIGHTBOX ===================== -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galeria de fotos">
-  <button class="lb-btn lb-fechar" aria-label="Fechar galeria">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-  </button>
-  <button class="lb-btn lb-ant" aria-label="Foto anterior">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-  </button>
-  <img id="lb-img" src="" alt="">
-  <button class="lb-btn lb-prox" aria-label="Próxima foto">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-  </button>
-  <p class="lb-contador"></p>
-</div>
+<script>
+(function () {
+  'use strict';
 
-<!-- ===================== WHATSAPP FLUTUANTE ===================== -->
-<button class="wpp-flutuante" data-wpp="geral" aria-label="Falar com a Silvana no WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.23.85.86-3.15-.2-.32a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.2 8.24"/></svg>
-  <span class="rotulo">Falar com a Silvana</span>
-</button>
+  /* ---------------- dados que mudam ---------------- */
+  var WPP = '5511985695991';
+  var REGIOES = ['ABC', 'Zona Leste', 'Zona Sul', 'São Paulo'];
+  var CLIENTES = [3, 7, 1, 4, 6, 2, 5, 8];
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "name": "Silvana Novaes",
-  "jobTitle": "Corretora de Imóveis",
-  "image": "assets/img/silvana-retrato.jpg",
-  "telephone": "+5511985695991",
-  "areaServed": [
-    { "@type": "Place", "name": "ABC Paulista" },
-    { "@type": "Place", "name": "Zona Leste, São Paulo" },
-    { "@type": "Place", "name": "Zona Sul, São Paulo" },
-    { "@type": "Place", "name": "São Paulo" }
-  ],
-  "knowsAbout": [
-    "Minha Casa Minha Vida",
-    "Financiamento imobiliário",
-    "Análise de perfil para compra de imóvel"
-  ],
-  "sameAs": [
-    "https://www.instagram.com/silvananovaescorretora/",
-    "https://www.facebook.com/share/1Dpp9tgstc/"
-  ]
-}
+  var $ = function (s) { return document.querySelector(s); };
+
+  /* ---------------- WhatsApp ---------------- */
+  document.querySelectorAll('[data-wpp]').forEach(function (a) {
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener');
+    a.href = 'https://wa.me/' + WPP + '?text=' + encodeURIComponent(a.dataset.wpp);
+  });
+
+  /* ---------------- regiões ---------------- */
+  var pino = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  $('#regioes').innerHTML = REGIOES.map(function (r, i) {
+    var msg = 'Oi, Silvana! Quero ver opções na região: ' + r + '.';
+    return '<a class="regiao ap' + (i % 2 ? ' d1' : '') + '" target="_blank" rel="noopener" href="https://wa.me/' +
+      WPP + '?text=' + encodeURIComponent(msg) + '">' + pino + '<b>' + r + '</b></a>';
+  }).join('');
+
+  /* ---------------- clientes: fita que corre sozinha ---------------- */
+  var chave = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="16.5" r="4"/><path d="m10.4 13.6 8.1-8.1M16.5 7.4l2.1 2.1M14.4 9.5l2.1 2.1"/></svg>';
+  function cartao(n) {
+    return '<figure class="cliente"><img src="assets/img/trabalho-' + n +
+      '.jpg" alt="Cliente da Silvana com a chave do imóvel" loading="lazy" width="158" height="211">' +
+      '<span>' + chave + '+1 sonho realizado</span></figure>';
+  }
+  // duplicado: a animação anda metade da fita e volta ao começo sem salto
+  $('#fita').innerHTML = CLIENTES.concat(CLIENTES).map(cartao).join('');
+
+  /* ---------------- vídeo: só carrega quando chega perto ---------------- */
+  var vid = $('#vid');
+  var carregou = false;
+  function carregarVideo() {
+    if (carregou) return;
+    carregou = true;
+    var f = document.createElement('source');
+    f.src = 'assets/video/decorado.mp4';
+    f.type = 'video/mp4';
+    vid.appendChild(f);
+    vid.load();
+    var p = vid.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  if ('IntersectionObserver' in window) {
+    var ov = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { carregarVideo(); ov.disconnect(); } });
+    }, { rootMargin: '300px' });
+    ov.observe(vid);
+  } else {
+    carregarVideo();
+  }
+
+  /* som: o vídeo começa mudo porque o navegador exige, o botão liga */
+  var som = $('#som');
+  var alto = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  var mudo = som.innerHTML;
+  som.addEventListener('click', function () {
+    vid.muted = !vid.muted;
+    som.innerHTML = vid.muted ? mudo : alto;
+    som.setAttribute('aria-label', vid.muted ? 'Ativar som do vídeo' : 'Desativar som do vídeo');
+    if (!vid.muted) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+  });
+
+  /* ---------------- aparecer ao rolar ---------------- */
+  if ('IntersectionObserver' in window) {
+    var oa = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vis'); oa.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+    document.querySelectorAll('.ap').forEach(function (el) { oa.observe(el); });
+  } else {
+    document.querySelectorAll('.ap').forEach(function (el) { el.classList.add('vis'); });
+  }
+
+  /* ---------------- botão fixo aparece depois do topo ---------------- */
+  var fixo = $('#fixo');
+  var alvo = document.querySelector('.topo .btns');
+  if ('IntersectionObserver' in window && alvo) {
+    new IntersectionObserver(function (es) {
+      fixo.classList.toggle('on', !es[0].isIntersecting);
+    }, { threshold: 0 }).observe(alvo);
+  }
+
+  /* ---------------- simulador de aluguel ---------------- */
+  var entrada = $('#aluguel');
+  var saida = $('#saida');
+
+  function moeda(v) {
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  }
+
+  entrada.addEventListener('input', function () {
+    var d = entrada.value.replace(/\D/g, '').slice(0, 8);
+    if (!d) { entrada.value = ''; saida.classList.remove('on'); return; }
+    var n = parseInt(d, 10) / 100;
+    entrada.value = n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+
+    if (n < 200) { saida.classList.remove('on'); return; }
+
+    // Regra de bolso do mercado: a parcela costuma caber em cerca de 30% da renda,
+    // então a renda implícita de quem paga esse aluguel é aproximadamente o triplo.
+    var renda = n * 3;
+    var faixa, cor;
+    if (renda <= 3200) faixa = 'Faixa Urbano 1';
+    else if (renda <= 5000) faixa = 'Faixa Urbano 2';
+    else if (renda <= 9600) faixa = 'Faixa Urbano 3';
+    else faixa = null;
+
+    var txt = 'Quem paga <b>' + moeda(n) + '</b> de aluguel costuma comprometer esse mesmo valor ' +
+      'com a parcela do financiamento — a diferença é que ela vira <b>o seu imóvel</b>.';
+
+    if (faixa) {
+      txt += '<br><br>Com renda familiar em torno de <b>' + moeda(renda) +
+        '</b>, o perfil normalmente cai na <b>' + faixa + '</b> do Minha Casa Minha Vida.';
+    } else {
+      txt += '<br><br>Nessa faixa o caminho costuma ser o <b>financiamento fora do programa</b>, ' +
+        'que também tem boas condições. Me chama que eu te explico.';
+    }
+    txt += '<br><br>Me manda uma mensagem que eu faço a conta certinha com os seus números.';
+
+    saida.innerHTML = txt;
+    saida.classList.add('on');
+  });
+})();
 </script>
-
-<script src="assets/js/dados.js"></script>
-<script src="assets/js/whatsapp.js"></script>
-<script src="assets/js/ferramentas.js"></script>
-<script src="assets/js/app.js"></script>
 </body>
 </html>
